@@ -1,23 +1,12 @@
-def productExceptSelf(nums):
-    if not nums:
-        return False
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        arr = [1] * len(nums)  # Array with the size of nums
+        prefix = postfix = 1
 
-    arr = [1] * len(
-        nums
-    )  # To print an array filled with ones that have the same size of the given array
-    pi = pj = 1
-
-    for i in range(len(nums)):
-        j = -1 - i
-        arr[i] = arr[i] * pi
-        print(pj)
-        arr[j] = arr[j] * pj
-        # print(arr[j])
-        pi = pi * nums[i]
-        pj = pj * nums[j]
-
-    return arr
-
-
-productExceptSelf(nums=[1, 2, 3, 4])
-# print(productExceptSelf(nums=[1, 2, 3, 4]))
+        for i in range(len(nums)):
+            j = -1 - i
+            arr[i] = arr[i] * prefix
+            arr[j] = arr[j] * postfix
+            prefix = prefix * nums[i]
+            postfix = postfix * nums[j]
+        return arr
